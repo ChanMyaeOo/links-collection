@@ -45,14 +45,14 @@
 
       <!-- Filter section -->
       <div class="filter">
-        <i class="fas fa-plus filter__plus"></i>
+        <i class="fas fa-plus filter__plus" id="filter__plus"></i>
         <div class="filter__btnWrap">
           <button>Design</button>
           <button>Javascript</button>
           <button>CSS</button>
           <button>React</button>
         </div>
-        <i class="fas fa-minus filter__minus"></i>
+        <i class="fas fa-minus filter__minus" id="filter__minus"></i>
       </div>
 
       <!-- Links card section -->
@@ -273,7 +273,7 @@
       </p>
     </footer>
 
-    <!-- Modal section -->
+    <!-- Modal section for adding link data -->
     <div class="modal-bg">
       <form class="modal__form">
         <label for="title">Title: </label>
@@ -290,6 +290,28 @@
 
         <button type="submit" class="add-link-btn">Add New Link</button>
         <span class="modal-close">X</span>
+      </form>
+    </div>
+
+    <!-- Modal section for adding category -->
+    <div class="modal-cat-bg">
+      <form class="modal-cat-form">
+        <h2>Add New Category</h2>
+        <label for="add-category">Category: </label>
+        <input type="text" name="addCategory" id="add-category" />
+        <button type="submit">Add Category</button>
+        <span class="modal-cat-close">X</span>
+      </form>
+    </div>
+
+    <!-- Modal section for removing category -->
+    <div class="modal-cat-remove-bg">
+      <form class="modal-cat-remove-form">
+        <h2>Enter Category Name To Remove</h2>
+        <label for="remove-category">Category: </label>
+        <input type="text" name="removeCategory" id="remove-category" />
+        <button type="submit">Remove Category</button>
+        <span class="modal-cat-remove-close">X</span>
       </form>
     </div>
 

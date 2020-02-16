@@ -7,8 +7,18 @@ const linkInput = document.querySelector('#link');
 const category = document.querySelector('#category');
 const addLinkForm = document.querySelector('.modal__form');
 const cardWrap = document.querySelector('.card-wrap');
+const addCategory = document.querySelector('#filter__plus');
+const removeCategory = document.querySelector('#filter__minus');
+const closeCatModal = document.querySelector('.modal-cat-close');
+const modalCatBg = document.querySelector('.modal-cat-bg');
+const closeCatRemoveModal = document.querySelector('.modal-cat-remove-close');
+const modalCatRemoveBg = document.querySelector('.modal-cat-remove-bg');
+const modalAddCatForm = document.querySelector('.modal-cat-form');
+const modalRemoveCatForm = document.querySelector('.modal-cat-remove-form');
+const filterBtnWrap = document.querySelector('.filter__btnWrap');
 
 let linksData = [];
+let categoryData = [];
 
 // Handle modal open and close
 addLink.addEventListener('click', e => {
@@ -70,3 +80,37 @@ addLinkForm.addEventListener('submit', e => {
 
   console.log(linksData);
 });
+
+// Handle modal OPEN and CLOSE for category
+closeCatModal.addEventListener('click', e => {
+  modalCatBg.classList.remove('modal-cat-bg-active');
+});
+addCategory.addEventListener('click', e => {
+  modalCatBg.classList.add('modal-cat-bg-active');
+});
+
+closeCatRemoveModal.addEventListener('click', e => {
+  modalCatRemoveBg.classList.remove('modal-cat-remove-bg-active');
+});
+removeCategory.addEventListener('click', e => {
+  modalCatRemoveBg.classList.add('modal-cat-remove-bg-active');
+});
+
+// Handle ADD category and REMOVE category
+modalAddCatForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const category = e.target.elements.addCategory.value;
+  categoryData.push(category);
+  const markUp = `
+    <button>${category}</button>
+  `;
+  filterBtnWrap.insertAdjacentHTML('afterbegin', markUp);
+  e.target.elements.addCategory.value = '';
+  modalCatBg.classList.remove('modal-cat-bg-active');
+  console.log(categoryData);
+});
+
+// modalRemoveCatForm.addEventListener('submit', e => {
+//   e.preventDefault();
+//   const categoryName = e.target.elements.removeCategory.value;
+// });
