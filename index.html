@@ -30,7 +30,7 @@
           </select>
         </div>
 
-        <i class="far fa-plus-square nav__plus"></i>
+        <i class="far fa-plus-square nav__plus" id="add-link"></i>
 
         <div>
           <input
@@ -272,6 +272,27 @@
         Designed & Created by <a href="#">Chan Myae Oo</a>
       </p>
     </footer>
+
+    <!-- Modal section -->
+    <div class="modal-bg">
+      <form class="modal__form">
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" />
+        <label for="description">Description: </label>
+        <input type="text" name="description" id="description" />
+        <label for="link">Link: </label>
+        <textarea name="link" id="link"></textarea>
+        <select name="category" id="category">
+          <option value="">Design</option>
+          <option value="">Programming</option>
+          <option value="">Fashion</option>
+        </select>
+
+        <button type="submit" class="add-link-btn">Add New Link</button>
+        <span class="modal-close">X</span>
+      </form>
+    </div>
+
     <script src="./js/app.js"></script>
   </body>
 </html>
