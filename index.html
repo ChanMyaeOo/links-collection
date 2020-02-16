@@ -4,10 +4,274 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="styles.css" />
+    <!-- Fontawesome links -->
+    <script
+      src="https://kit.fontawesome.com/f494066f73.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="./css/styles.css" />
     <title>Links Collection</title>
   </head>
   <body>
-    <script src="app.js"></script>
+    <!-- Header section -->
+    <header class="header">
+      <h1 class="header__title">Personal Links Collection</h1>
+      <div class="header__favourite">Fav</div>
+    </header>
+    <!-- Nav section -->
+    <div class="container">
+      <div class="nav">
+        <div class="nav__sort">
+          <select class="nav__sort--select" id="sortBy">
+            <option value="byEdited">By Last Edited</option>
+            <option value="byCreated">By Recently Created</option>
+            <option value="byAlphabetical">By Alphabetically</option>
+          </select>
+        </div>
+
+        <i class="far fa-plus-square nav__plus"></i>
+
+        <div>
+          <input
+            type="text"
+            name="search"
+            class="nav__search"
+            id="search"
+            placeholder="Search ..."
+          />
+        </div>
+      </div>
+
+      <!-- Filter section -->
+      <div class="filter">
+        <i class="fas fa-plus filter__plus"></i>
+        <div class="filter__btnWrap">
+          <button>Design</button>
+          <button>Javascript</button>
+          <button>CSS</button>
+          <button>React</button>
+        </div>
+        <i class="fas fa-minus filter__minus"></i>
+      </div>
+
+      <!-- Links card section -->
+      <div class="card-wrap">
+        <!-- card -->
+        <div class="card">
+          <div class="card__top">
+            <span>Share</span>
+            <span>Fav</span>
+          </div>
+
+          <div class="card__content">
+            <div class="card__title">
+              <a href="#">Javascript</a>
+            </div>
+            <div class="card__description">
+              <p>
+                MDN Javascript Documentation ...
+              </p>
+            </div>
+          </div>
+
+          <div class="card__bottom">
+            <i class="far fa-edit"></i>
+            <i class="far fa-trash-alt"></i>
+          </div>
+        </div>
+
+        <!-- card -->
+        <div class="card">
+          <div class="card__top">
+            <span>Share</span>
+            <span>Fav</span>
+          </div>
+
+          <div class="card__content">
+            <div class="card__title">
+              <a href="#">Javascript</a>
+            </div>
+            <div class="card__description">
+              <p>
+                MDN Javascript Documentation ...
+              </p>
+            </div>
+          </div>
+
+          <div class="card__bottom">
+            <i class="far fa-edit"></i>
+            <i class="far fa-trash-alt"></i>
+          </div>
+        </div>
+
+        <!-- card -->
+        <div class="card">
+          <div class="card__top">
+            <span>Share</span>
+            <span>Fav</span>
+          </div>
+
+          <div class="card__content">
+            <div class="card__title">
+              <a href="#">Javascript</a>
+            </div>
+            <div class="card__description">
+              <p>
+                MDN Javascript Documentation ...
+              </p>
+            </div>
+          </div>
+
+          <div class="card__bottom">
+            <i class="far fa-edit"></i>
+            <i class="far fa-trash-alt"></i>
+          </div>
+        </div>
+
+        <!-- card -->
+        <div class="card">
+          <div class="card__top">
+            <span>Share</span>
+            <span>Fav</span>
+          </div>
+
+          <div class="card__content">
+            <div class="card__title">
+              <a href="#">Javascript</a>
+            </div>
+            <div class="card__description">
+              <p>
+                MDN Javascript Documentation ...
+              </p>
+            </div>
+          </div>
+
+          <div class="card__bottom">
+            <i class="far fa-edit"></i>
+            <i class="far fa-trash-alt"></i>
+          </div>
+        </div>
+
+        <!-- card -->
+        <div class="card">
+          <div class="card__top">
+            <span>Share</span>
+            <span>Fav</span>
+          </div>
+
+          <div class="card__content">
+            <div class="card__title">
+              <a href="#">Javascript</a>
+            </div>
+            <div class="card__description">
+              <p>
+                MDN Javascript Documentation ...
+              </p>
+            </div>
+          </div>
+
+          <div class="card__bottom">
+            <i class="far fa-edit"></i>
+            <i class="far fa-trash-alt"></i>
+          </div>
+        </div>
+
+        <!-- card -->
+        <div class="card">
+          <div class="card__top">
+            <span>Share</span>
+            <span>Fav</span>
+          </div>
+
+          <div class="card__content">
+            <div class="card__title">
+              <a href="#">Javascript</a>
+            </div>
+            <div class="card__description">
+              <p>
+                MDN Javascript Documentation ...
+              </p>
+            </div>
+          </div>
+
+          <div class="card__bottom">
+            <i class="far fa-edit"></i>
+            <i class="far fa-trash-alt"></i>
+          </div>
+        </div>
+
+        <!-- card -->
+        <div class="card">
+          <div class="card__top">
+            <span>Share</span>
+            <span>Fav</span>
+          </div>
+
+          <div class="card__content">
+            <div class="card__title">
+              <a href="#">Javascript</a>
+            </div>
+            <div class="card__description">
+              <p>
+                MDN Javascript Documentation ...
+              </p>
+            </div>
+          </div>
+
+          <div class="card__bottom">
+            <i class="far fa-edit"></i>
+            <i class="far fa-trash-alt"></i>
+          </div>
+        </div>
+
+        <!-- card -->
+        <div class="card">
+          <div class="card__top">
+            <span>Share</span>
+            <span>Fav</span>
+          </div>
+
+          <div class="card__content">
+            <div class="card__title">
+              <a href="#">Javascript</a>
+            </div>
+            <div class="card__description">
+              <p>
+                MDN Javascript Documentation ...
+              </p>
+            </div>
+          </div>
+
+          <div class="card__bottom">
+            <i class="far fa-edit"></i>
+            <i class="far fa-trash-alt"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination section -->
+      <div class="pagination">
+        <div class="pagination__items">
+          <div class="pagination__left">
+            <i class="fas fa-angle-double-left"></i>
+          </div>
+          <div class="pagination__number">1</div>
+          <div class="pagination__number">2</div>
+          <div class="pagination__number">3</div>
+          <div class="pagination__right">
+            <i class="fas fa-angle-double-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer section -->
+    <footer class="footer">
+      <p class="footer__content">
+        Designed & Created by <a href="#">Chan Myae Oo</a>
+      </p>
+    </footer>
+    <script src="./js/app.js"></script>
   </body>
 </html>

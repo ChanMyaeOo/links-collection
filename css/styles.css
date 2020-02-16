@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+html {
+  /* this defines what 1rem is (in this case 1rem = 10px - with percentage 62.5) */
+  font-size: 62.5%;
+}
+
+.container {
+  max-width: 96rem;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.header {
+  width: 100%;
+  height: 10vh;
+  background: blueviolet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header__title {
+  font-size: 3rem;
+  color: #f2f2f2;
+  font-weight: 600;
+}
+
+.header__favourite {
+  background: #f2f2f2;
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  top: calc(height - 90%);
+  right: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Nav section */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 0 8rem 0;
+}
+
+.nav__sort--select {
+  height: 4rem;
+}
+
+.nav__plus {
+  font-size: 5rem;
+  font-weight: 300;
+  color: blueviolet;
+  cursor: pointer;
+}
+
+.nav__search {
+  height: 4rem;
+  padding: 0.5rem;
+}
+
+/* Filter section */
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rem;
+}
+
+.filter__btnWrap {
+  height: auto;
+  background: blueviolet;
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 0.5rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.filter__btnWrap > button {
+  height: 3rem;
+  padding: 0 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.filter__plus,
+.filter__minus {
+  font-size: 3.5rem;
+  color: blueviolet;
+  cursor: pointer;
+}
+
+/* Card section */
+
+.card-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 8rem;
+}
+
+.card {
+  width: 20rem;
+  height: 20rem;
+  background: blueviolet;
+  border-radius: 4px;
+  margin: 2rem;
+}
+
+.card__top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__top > span {
+  padding: 1rem;
+  font-size: 1.6rem;
+  color: #f2f2f2;
+  cursor: pointer;
+}
+
+.card__content {
+  height: 60%;
+  line-height: 1.5;
+}
+
+.card__title {
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.card__title > a {
+  font-size: 2.3rem;
+  color: #f2f2f2;
+  text-decoration: none;
+  background: blue;
+}
+
+.card__title > a:hover {
+  background: #f2f2f2;
+  color: blue;
+}
+
+.card__description {
+  background: #f2f2f2;
+  margin: 1rem 1.8rem;
+  text-align: center;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.card__description > p {
+  font-size: 1.2rem;
+}
+
+.card__bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__bottom > i {
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: #f2f2f2;
+  cursor: pointer;
+}
+
+.card__bottom > i:first-child:hover {
+  color: #000;
+}
+
+.card__bottom > i:last-child:hover {
+  color: #f00;
+}
+
+/* Pagniation section */
+
+.pagination {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.pagination__items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination__items > div {
+  width: 4rem;
+  height: 4rem;
+  background: blueviolet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(196, 202, 211);
+  cursor: pointer;
+}
+
+.pagination__items > div:hover {
+  background: #f2f2f2;
+}
+
+/* Footer section */
+
+.footer {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: blueviolet;
+}
+
+.footer__content {
+  font-size: 1.6rem;
+  color: #f2f2f2;
+}
+
+.footer__content > a {
+  color: #f2f2f2;
+}
