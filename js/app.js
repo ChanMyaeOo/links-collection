@@ -18,7 +18,7 @@ const modalRemoveCatForm = document.querySelector('.modal-cat-remove-form');
 const filterBtnWrap = document.querySelector('.filter__btnWrap');
 
 let linksData = [];
-let categoryData = [];
+let categoryData = ['Design', 'Programming', 'CSS', 'Javascript'];
 
 // Handle modal open and close
 addLink.addEventListener('click', e => {
@@ -105,12 +105,36 @@ modalAddCatForm.addEventListener('submit', e => {
     <button>${category}</button>
   `;
   filterBtnWrap.insertAdjacentHTML('afterbegin', markUp);
+
   e.target.elements.addCategory.value = '';
   modalCatBg.classList.remove('modal-cat-bg-active');
   console.log(categoryData);
 });
 
-// modalRemoveCatForm.addEventListener('submit', e => {
-//   e.preventDefault();
-//   const categoryName = e.target.elements.removeCategory.value;
-// });
+modalRemoveCatForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const categoryName = e.target.elements.removeCategory.value;
+  const categoryIndex = categoryData.findIndex(data => {
+    return data === categoryName;
+  });
+
+  categoryData.splice(categoryIndex, 1);
+  console.log(categoryData);
+  filterBtnWrap.innerHTML = '';
+  renderCategoryData(categoryData);
+  modalCatRemoveBg.classList.remove('modal-cat-remove-bg-active');
+  e.target.elements.removeCategory.value = '';
+});
+
+// Show category from the array list to the UI
+const renderCategoryData = list => {
+  list.forEach(category => {
+    const markUp = `
+        <button>${category}</button>
+      `;
+    filterBtnWrap.insertAdjacentHTML('afterbegin', markUp);
+    console.log(category);
+  });
+};
+
+renderCategoryData(categoryData);
