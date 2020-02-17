@@ -16,6 +16,7 @@ const modalCatRemoveBg = document.querySelector('.modal-cat-remove-bg');
 const modalAddCatForm = document.querySelector('.modal-cat-form');
 const modalRemoveCatForm = document.querySelector('.modal-cat-remove-form');
 const filterBtnWrap = document.querySelector('.filter__btnWrap');
+const linkCategoryDropdown = document.querySelector('#category');
 
 let linksData = [];
 let categoryData = ['Design', 'Programming', 'CSS', 'Javascript'];
@@ -101,6 +102,9 @@ modalAddCatForm.addEventListener('submit', e => {
   e.preventDefault();
   const category = e.target.elements.addCategory.value;
   categoryData.push(category);
+  // to inject category data to the UI (dropdown list)
+  linkCategoryDropdown.innerHTML = '';
+  injectCategory(categoryData);
   const markUp = `
     <button>${category}</button>
   `;
@@ -120,8 +124,12 @@ modalRemoveCatForm.addEventListener('submit', e => {
 
   categoryData.splice(categoryIndex, 1);
   console.log(categoryData);
+  // to inject category button to the UI
   filterBtnWrap.innerHTML = '';
   renderCategoryData(categoryData);
+  // to inject category data to the UI (dropdown list)
+  linkCategoryDropdown.innerHTML = '';
+  injectCategory(categoryData);
   modalCatRemoveBg.classList.remove('modal-cat-remove-bg-active');
   e.target.elements.removeCategory.value = '';
 });
@@ -138,3 +146,15 @@ const renderCategoryData = list => {
 };
 
 renderCategoryData(categoryData);
+
+// Inject dropdown data from js (category dropdown list)
+const injectCategory = list => {
+  list.forEach(data => {
+    const markUp = `
+      <option value=${data}>${data}</option>
+    `;
+    linkCategoryDropdown.insertAdjacentHTML('afterbegin', markUp);
+  });
+};
+
+injectCategory(categoryData);
