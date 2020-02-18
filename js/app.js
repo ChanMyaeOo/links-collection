@@ -74,7 +74,14 @@ let linksData = [
     linkCategory: 'CSS'
   }
 ];
-let categoryData = ['All', 'Design', 'Programming', 'CSS', 'Javascript'];
+let categoryData = [
+  'All',
+  'Design',
+  'Programming',
+  'CSS',
+  'Javascript',
+  'Knowledge'
+];
 
 // Handle modal open and close
 addLink.addEventListener('click', e => {
@@ -133,8 +140,6 @@ addLinkForm.addEventListener('submit', e => {
 
     cardWrap.insertAdjacentHTML('afterbegin', markUp);
   }
-
-  console.log(linksData);
 });
 
 // Handle modal OPEN and CLOSE for category
@@ -172,7 +177,6 @@ modalAddCatForm.addEventListener('submit', e => {
 
   e.target.elements.addCategory.value = '';
   modalCatBg.classList.remove('modal-cat-bg-active');
-  console.log(categoryData);
 });
 
 modalRemoveCatForm.addEventListener('submit', e => {
@@ -183,7 +187,9 @@ modalRemoveCatForm.addEventListener('submit', e => {
   });
 
   categoryData.splice(categoryIndex, 1);
-  console.log(categoryData);
+
+  // handle for removing category button (if there is exist in the linksData, it won't be removed)
+
   // to inject category button to the UI
   filterBtnWrap.innerHTML = '';
   renderCategoryData(categoryData);
@@ -225,7 +231,6 @@ const renderCategoryData = list => {
         <button class="categoryBtn">${category}</button>
       `;
     filterBtnWrap.insertAdjacentHTML('beforeend', markUp);
-    console.log(category);
   });
   filterLink();
 };
@@ -234,7 +239,8 @@ renderCategoryData(categoryData);
 
 // Inject dropdown data from js (category dropdown list)
 const injectCategory = list => {
-  list.forEach(data => {
+  const listData = list.slice(1, list.length);
+  listData.forEach(data => {
     const markUp = `
       <option value=${data}>${data}</option>
     `;
@@ -273,7 +279,6 @@ const renderLinkDataCard = list => {
     `;
 
     cardWrap.insertAdjacentHTML('afterbegin', markup);
-    console.log(data.link);
   });
 };
 

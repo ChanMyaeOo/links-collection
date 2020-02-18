@@ -1,0 +1,1 @@
+1. To handle remove category button (if there is already existed link category (in the linksData array) with the name of category button, it won't be removed)
