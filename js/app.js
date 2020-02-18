@@ -17,6 +17,7 @@ const modalAddCatForm = document.querySelector('.modal-cat-form');
 const modalRemoveCatForm = document.querySelector('.modal-cat-remove-form');
 const filterBtnWrap = document.querySelector('.filter__btnWrap');
 const linkCategoryDropdown = document.querySelector('#category');
+const searchEl = document.querySelector('#search');
 
 let linksData = [
   {
@@ -283,3 +284,14 @@ const renderLinkDataCard = list => {
 };
 
 renderLinkDataCard(linksData);
+
+// Handle search data link
+searchEl.addEventListener('input', e => {
+  let input = e.target.value.toLowerCase();
+  const dataList = linksData.filter(data => {
+    return data.title.toLowerCase().includes(input);
+  });
+
+  cardWrap.innerHTML = '';
+  renderLinkDataCard(dataList);
+});
