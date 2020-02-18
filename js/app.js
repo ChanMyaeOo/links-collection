@@ -143,7 +143,6 @@ addLinkForm.addEventListener('submit', e => {
     modalBg.classList.remove('modal-bg-active');
 
     cardWrap.insertAdjacentHTML('afterbegin', markUp);
-    console.log('before deleting', linksData);
 
     cardWrap.innerHTML = '';
     renderLinkDataCard(linksData);
@@ -299,9 +298,12 @@ const renderLinkDataCard = list => {
     // handle for edit link data card
     document.querySelector('#edit-card').addEventListener('click', e => {
       const cardId = e.target.parentNode.parentNode.dataset.link;
-      console.log('Editing ...', cardId);
+      // Find edit card data from the linksData array (with specific ID)
+      const linkData = linksData.find(data => {
+        return data.id === cardId;
+      });
+      // Inject link data edit form
       modalBgEdit.classList.add('modal-bg-edit-active');
-
       const markup = `
           <form class="modal__edit-form">
             <label for="title-edit">Title: </label>
@@ -324,6 +326,49 @@ const renderLinkDataCard = list => {
       document
         .querySelector('.modal-close-edit')
         .addEventListener('click', e => {
+          modalBgEdit.classList.remove('modal-bg-edit-active');
+        });
+
+      // Set link data to the edit form input fields
+      document.querySelector('#title-edit').value = linkData.title;
+      document.querySelector('#description-edit').value = linkData.description;
+      document.querySelector('#link-edit').value = linkData.link;
+      const linkEditCategory = document.querySelector('#category-edit');
+      const categoryList = categoryData.slice(1, categoryData.length); // slice first index (slice All not to include to the dropdown list)
+
+      // loop over category list to inject dropdown value to the HTML
+      categoryList.forEach(category => {
+        // check to make selected from the previous dropdown value (linkData.linkCategory)
+        if (category === linkData.linkCategory) {
+          const catSpecOption = `
+            <option value="${category}" selected>${category}</option>
+          `;
+          linkEditCategory.insertAdjacentHTML('afterbegin', catSpecOption);
+        } else {
+          const catOption = `
+            <option value="${category}">${category}</option>
+         `;
+          linkEditCategory.insertAdjacentHTML('afterbegin', catOption);
+        }
+      });
+
+      // Handle form submit for editing link data
+      document
+        .querySelector('.modal__edit-form')
+        .addEventListener('submit', e => {
+          e.preventDefault();
+          linkData.title = document.querySelector('#title-edit').value;
+          linkData.description = document.querySelector(
+            '#description-edit'
+          ).value;
+          linkData.link = document.querySelector('#link-edit').value;
+          linkData.linkCategory = document.querySelector(
+            '#category-edit'
+          ).value;
+
+          cardWrap.innerHTML = '';
+          renderLinkDataCard(linksData);
+
           modalBgEdit.classList.remove('modal-bg-edit-active');
         });
     });
@@ -353,7 +398,6 @@ const deleteCard = id => {
     // Rerender data link card
     cardWrap.innerHTML = '';
     renderLinkDataCard(linksData);
-    console.log('after deleting', linksData);
   } else {
     console.log('SHITTTT');
   }
