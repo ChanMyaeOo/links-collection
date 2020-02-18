@@ -100,8 +100,9 @@ addLinkForm.addEventListener('submit', e => {
   let description = e.target.elements.description.value;
   let link = e.target.elements.link.value;
   let linkCategory = category.options[category.selectedIndex].value;
+  const id = uuid();
   const markUp = `
-      <div class="card">
+      <div class="card" data-link="${id}">
         <div class="card__top">
           <span>Share</span>
           <span>Fav</span>
@@ -120,7 +121,7 @@ addLinkForm.addEventListener('submit', e => {
 
         <div class="card__bottom">
           <i class="far fa-edit"></i>
-          <i class="far fa-trash-alt"></i>
+          <i class="far fa-trash-alt" id="delete-card"></i>
         </div>
       </div>
     </div>
@@ -129,6 +130,7 @@ addLinkForm.addEventListener('submit', e => {
   // Check inputs to push data int linksData
   if (title.length > 0 && link.length > 0) {
     linksData.push({
+      id,
       title,
       description,
       link,
@@ -140,6 +142,10 @@ addLinkForm.addEventListener('submit', e => {
     modalBg.classList.remove('modal-bg-active');
 
     cardWrap.insertAdjacentHTML('afterbegin', markUp);
+    console.log('before deleting', linksData);
+
+    cardWrap.innerHTML = '';
+    renderLinkDataCard(linksData);
   }
 });
 
@@ -255,7 +261,7 @@ injectCategory(categoryData);
 const renderLinkDataCard = list => {
   list.forEach(data => {
     const markup = `
-      <div class="card">
+      <div class="card" data-link="${data.id}">
         <div class="card__top">
           <span>Share</span>
           <span>Fav</span>
@@ -274,12 +280,18 @@ const renderLinkDataCard = list => {
 
         <div class="card__bottom">
           <i class="far fa-edit"></i>
-          <i class="far fa-trash-alt"></i>
+          <i class="far fa-trash-alt" id="delete-card" ></i>
         </div>
     </div>
     `;
 
     cardWrap.insertAdjacentHTML('afterbegin', markup);
+    document.querySelector('#delete-card').addEventListener('click', e => {
+      const cardId = e.target.parentNode.parentNode.dataset.link;
+      if (cardId) {
+        deleteCard(cardId);
+      }
+    });
   });
 };
 
@@ -295,3 +307,20 @@ searchEl.addEventListener('input', e => {
   cardWrap.innerHTML = '';
   renderLinkDataCard(dataList);
 });
+
+// Handle delete link data card
+
+const deleteCard = id => {
+  if (id !== undefined) {
+    const dataIndex = linksData.findIndex(data => {
+      return data.id === id;
+    });
+    linksData.splice(dataIndex, 1);
+    // Rerender data link card
+    cardWrap.innerHTML = '';
+    renderLinkDataCard(linksData);
+    console.log('after deleting', linksData);
+  } else {
+    console.log('SHITTTT');
+  }
+};
