@@ -22,23 +22,59 @@ let linksData = [
   {
     title: 'JS for NOOB',
     description: 'MDN documentation',
-    link: 'www.mdn.com',
+    link: 'https://www.google.com/',
     linkCategory: 'Javascript'
   },
   {
     title: 'UI/UX for NOOB',
     description: 'Dribble post',
-    link: 'www.dribbble.com',
+    link: 'https://www.dribbble.com',
     linkCategory: 'Design'
   },
   {
     title: 'why universe exists?',
     description: 'medium post',
-    link: 'www.medium.com',
+    link: 'https://www.medium.com',
     linkCategory: 'Knowledge'
+  },
+  {
+    title: 'Why Javascript?',
+    description: 'medium post',
+    link: 'https://www.medium.com',
+    linkCategory: 'Javascript'
+  },
+  {
+    title: "What we can do with Javascript? Let's Explore",
+    description: 'medium post',
+    link: 'https://www.medium.com',
+    linkCategory: 'Javascript'
+  },
+  {
+    title: 'Human Being',
+    description: 'medium post',
+    link: 'https://www.medium.com',
+    linkCategory: 'Knowledge'
+  },
+  {
+    title: 'Learn Programming?',
+    description: 'medium post',
+    link: 'https://www.medium.com',
+    linkCategory: 'Programming'
+  },
+  {
+    title: 'Artificial Intelligence',
+    description: 'medium post',
+    link: 'https://www.medium.com',
+    linkCategory: 'Programming'
+  },
+  {
+    title: 'Flex and Grid',
+    description: 'medium post',
+    link: 'https://www.medium.com',
+    linkCategory: 'CSS'
   }
 ];
-let categoryData = ['Design', 'Programming', 'CSS', 'Javascript'];
+let categoryData = ['All', 'Design', 'Programming', 'CSS', 'Javascript'];
 
 // Handle modal open and close
 addLink.addEventListener('click', e => {
@@ -165,11 +201,19 @@ const filterLink = () => {
     btn.addEventListener('click', e => {
       console.log(e.target.textContent);
       const categoryName = e.target.textContent;
-      const matchLinks = linksData.find(data => {
+      const matchLinks = linksData.filter(data => {
         return data.linkCategory === categoryName;
       });
 
-      console.log(matchLinks);
+      console.log('match links', matchLinks);
+      // rerender link data card with filtered link data
+      cardWrap.innerHTML = '';
+      renderLinkDataCard(matchLinks);
+
+      // handle for all button
+      if (e.target.textContent === 'All') {
+        renderLinkDataCard(linksData);
+      }
     });
   });
 };
@@ -180,7 +224,7 @@ const renderCategoryData = list => {
     const markUp = `
         <button class="categoryBtn">${category}</button>
       `;
-    filterBtnWrap.insertAdjacentHTML('afterbegin', markUp);
+    filterBtnWrap.insertAdjacentHTML('beforeend', markUp);
     console.log(category);
   });
   filterLink();
@@ -199,3 +243,38 @@ const injectCategory = list => {
 };
 
 injectCategory(categoryData);
+
+// Rendering links data card
+const renderLinkDataCard = list => {
+  list.forEach(data => {
+    const markup = `
+      <div class="card">
+        <div class="card__top">
+          <span>Share</span>
+          <span>Fav</span>
+        </div>
+
+        <div class="card__content">
+          <div class="card__title">
+            <a href=${data.link} target="_blank" >${data.title}</a>
+          </div>
+          <div class="card__description">
+            <p>
+              ${data.description}
+            </p>
+          </div>
+        </div>
+
+        <div class="card__bottom">
+          <i class="far fa-edit"></i>
+          <i class="far fa-trash-alt"></i>
+        </div>
+    </div>
+    `;
+
+    cardWrap.insertAdjacentHTML('afterbegin', markup);
+    console.log(data.link);
+  });
+};
+
+renderLinkDataCard(linksData);
