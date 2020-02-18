@@ -381,3 +381,45 @@ html {
   right: 1rem;
   cursor: pointer;
 }
+
+/* Modal edit section */
+
+.modal__edit-form {
+  background: #f2f2f2;
+  width: 30%;
+  height: 40%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.modal-close-edit {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-bg-edit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s;
+}
+
+.modal-bg-edit-active {
+  visibility: visible;
+  opacity: 1;
+}

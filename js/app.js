@@ -18,6 +18,7 @@ const modalRemoveCatForm = document.querySelector('.modal-cat-remove-form');
 const filterBtnWrap = document.querySelector('.filter__btnWrap');
 const linkCategoryDropdown = document.querySelector('#category');
 const searchEl = document.querySelector('#search');
+const modalBgEdit = document.querySelector('.modal-bg-edit');
 
 let linksData = [
   {
@@ -120,7 +121,7 @@ addLinkForm.addEventListener('submit', e => {
         </div>
 
         <div class="card__bottom">
-          <i class="far fa-edit"></i>
+          <i class="far fa-edit" id="edit-card"></i>
           <i class="far fa-trash-alt" id="delete-card"></i>
         </div>
       </div>
@@ -279,18 +280,52 @@ const renderLinkDataCard = list => {
         </div>
 
         <div class="card__bottom">
-          <i class="far fa-edit"></i>
+          <i class="far fa-edit" id="edit-card"></i>
           <i class="far fa-trash-alt" id="delete-card" ></i>
         </div>
     </div>
     `;
 
     cardWrap.insertAdjacentHTML('afterbegin', markup);
+
+    // handle for delete link data card
     document.querySelector('#delete-card').addEventListener('click', e => {
       const cardId = e.target.parentNode.parentNode.dataset.link;
       if (cardId) {
         deleteCard(cardId);
       }
+    });
+
+    // handle for edit link data card
+    document.querySelector('#edit-card').addEventListener('click', e => {
+      const cardId = e.target.parentNode.parentNode.dataset.link;
+      console.log('Editing ...', cardId);
+      modalBgEdit.classList.add('modal-bg-edit-active');
+
+      const markup = `
+          <form class="modal__edit-form">
+            <label for="title-edit">Title: </label>
+            <input type="text" name="title-edit" id="title-edit" />
+            <label for="description-edit">Description: </label>
+            <input type="text" name="description-edit" id="description-edit" />
+            <label for="link-edit">Link: </label>
+            <textarea name="link-edit" id="link-edit"></textarea>
+            <select name="category-edit" id="category-edit">
+              <!-- <option value="design">Design</option>
+              <option value="programming">Programming</option>
+              <option value="fashion">Fashion</option> -->
+            </select>
+
+            <button type="submit" class="add-link-btn-edit">Edit Link Data</button>
+            <span class="modal-close-edit">X</span>
+          </form>
+      `;
+      modalBgEdit.innerHTML = markup;
+      document
+        .querySelector('.modal-close-edit')
+        .addEventListener('click', e => {
+          modalBgEdit.classList.remove('modal-bg-edit-active');
+        });
     });
   });
 };
@@ -309,7 +344,6 @@ searchEl.addEventListener('input', e => {
 });
 
 // Handle delete link data card
-
 const deleteCard = id => {
   if (id !== undefined) {
     const dataIndex = linksData.findIndex(data => {
@@ -324,3 +358,6 @@ const deleteCard = id => {
     console.log('SHITTTT');
   }
 };
+
+// Handle edit link data card
+const editCard = id => {};
