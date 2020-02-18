@@ -18,7 +18,26 @@ const modalRemoveCatForm = document.querySelector('.modal-cat-remove-form');
 const filterBtnWrap = document.querySelector('.filter__btnWrap');
 const linkCategoryDropdown = document.querySelector('#category');
 
-let linksData = [];
+let linksData = [
+  {
+    title: 'JS for NOOB',
+    description: 'MDN documentation',
+    link: 'www.mdn.com',
+    linkCategory: 'Javascript'
+  },
+  {
+    title: 'UI/UX for NOOB',
+    description: 'Dribble post',
+    link: 'www.dribbble.com',
+    linkCategory: 'Design'
+  },
+  {
+    title: 'why universe exists?',
+    description: 'medium post',
+    link: 'www.medium.com',
+    linkCategory: 'Knowledge'
+  }
+];
 let categoryData = ['Design', 'Programming', 'CSS', 'Javascript'];
 
 // Handle modal open and close
@@ -105,10 +124,15 @@ modalAddCatForm.addEventListener('submit', e => {
   // to inject category data to the UI (dropdown list)
   linkCategoryDropdown.innerHTML = '';
   injectCategory(categoryData);
+
   const markUp = `
-    <button>${category}</button>
+    <button class="categoryBtn">${category}</button>
   `;
   filterBtnWrap.insertAdjacentHTML('afterbegin', markUp);
+
+  // Rerendering new category button to add categoryBtn class
+  filterBtnWrap.innerHTML = '';
+  renderCategoryData(categoryData);
 
   e.target.elements.addCategory.value = '';
   modalCatBg.classList.remove('modal-cat-bg-active');
@@ -134,15 +158,32 @@ modalRemoveCatForm.addEventListener('submit', e => {
   e.target.elements.removeCategory.value = '';
 });
 
-// Show category from the array list to the UI
+// filtering link data by clicking category button
+const filterLink = () => {
+  const categoryBtns = document.querySelectorAll('.categoryBtn');
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', e => {
+      console.log(e.target.textContent);
+      const categoryName = e.target.textContent;
+      const matchLinks = linksData.find(data => {
+        return data.linkCategory === categoryName;
+      });
+
+      console.log(matchLinks);
+    });
+  });
+};
+
+// Show category button from the array list to the UI
 const renderCategoryData = list => {
   list.forEach(category => {
     const markUp = `
-        <button>${category}</button>
+        <button class="categoryBtn">${category}</button>
       `;
     filterBtnWrap.insertAdjacentHTML('afterbegin', markUp);
     console.log(category);
   });
+  filterLink();
 };
 
 renderCategoryData(categoryData);
