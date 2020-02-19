@@ -504,13 +504,11 @@ const sortLinksData = (dataList, sortType) => {
     });
   }
 };
+// Listen for sorting dropdown changes
 document.querySelector('#sortBy').addEventListener('change', e => {
   const sort = e.target.value;
   const sortedLinksData = sortLinksData(linksData, sort);
-  // linksData = sortedLinksData;
+
   cardWrap.innerHTML = '';
   renderLinkDataCard(sortedLinksData);
-  console.log(sortedLinksData);
-
-  // console.log(e.target.value);
 });
