@@ -22,62 +22,7 @@ const modalBgEdit = document.querySelector('.modal-bg-edit');
 const favToggle = document.querySelector('#fav-toggle');
 const favLinks = document.querySelector('.favourite-links');
 
-let linksData = [
-  {
-    title: 'JS for NOOB',
-    description: 'MDN documentation',
-    link: 'https://www.google.com/',
-    linkCategory: 'Javascript'
-  },
-  {
-    title: 'UI/UX for NOOB',
-    description: 'Dribble post',
-    link: 'https://www.dribbble.com',
-    linkCategory: 'Design'
-  },
-  {
-    title: 'why universe exists?',
-    description: 'medium post',
-    link: 'https://www.medium.com',
-    linkCategory: 'Knowledge'
-  },
-  {
-    title: 'Why Javascript?',
-    description: 'medium post',
-    link: 'https://www.medium.com',
-    linkCategory: 'Javascript'
-  },
-  {
-    title: "What we can do with Javascript? Let's Explore",
-    description: 'medium post',
-    link: 'https://www.medium.com',
-    linkCategory: 'Javascript'
-  },
-  {
-    title: 'Human Being',
-    description: 'medium post',
-    link: 'https://www.medium.com',
-    linkCategory: 'Knowledge'
-  },
-  {
-    title: 'Learn Programming?',
-    description: 'medium post',
-    link: 'https://www.medium.com',
-    linkCategory: 'Programming'
-  },
-  {
-    title: 'Artificial Intelligence',
-    description: 'medium post',
-    link: 'https://www.medium.com',
-    linkCategory: 'Programming'
-  },
-  {
-    title: 'Flex and Grid',
-    description: 'medium post',
-    link: 'https://www.medium.com',
-    linkCategory: 'CSS'
-  }
-];
+let linksData = [];
 let categoryData = [
   'All',
   'Design',
@@ -137,14 +82,17 @@ addLinkForm.addEventListener('submit', e => {
     </div>
   `;
 
-  // Check inputs to push data int linksData
+  // Check inputs to push data into linksData
+  const now = moment().valueOf();
   if (title.length > 0 && link.length > 0) {
     linksData.push({
       id,
       title,
       description,
       link,
-      linkCategory
+      linkCategory,
+      createdAt: now,
+      updatedAt: now
     });
     e.target.elements.title.value = '';
     e.target.elements.description.value = '';
@@ -398,6 +346,10 @@ const renderLinkDataCard = list => {
             '#category-edit'
           ).value;
 
+          console.log(linkData.updatedAt);
+          linkData.updatedAt = moment().valueOf();
+          console.log(linkData.updatedAt);
+
           cardWrap.innerHTML = '';
           renderLinkDataCard(linksData);
 
@@ -516,4 +468,49 @@ const deleteCard = id => {
 // Handle for favourite data link toggle
 favToggle.addEventListener('click', e => {
   favLinks.classList.toggle('favourite-active');
+});
+
+// Handle for sorting data link card
+const sortLinksData = (dataList, sortType) => {
+  if (sortType === 'byCreated') {
+    return dataList.sort((a, b) => {
+      if (a.createdAt < b.createdAt) {
+        return -1;
+      } else if (a.createdAt > b.createdAt) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  } else if (sortType === 'byAlphabetical') {
+    return dataList.sort((a, b) => {
+      if (a.title.toLowerCase() > b.title.toLowerCase()) {
+        return -1;
+      } else if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  } else if (sortType === 'byEdited') {
+    return dataList.sort((a, b) => {
+      if (a.updatedAt < b.updatedAt) {
+        return -1;
+      } else if (a.updatedAt > b.updatedAt) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  }
+};
+document.querySelector('#sortBy').addEventListener('change', e => {
+  const sort = e.target.value;
+  const sortedLinksData = sortLinksData(linksData, sort);
+  // linksData = sortedLinksData;
+  cardWrap.innerHTML = '';
+  renderLinkDataCard(sortedLinksData);
+  console.log(sortedLinksData);
+
+  // console.log(e.target.value);
 });
