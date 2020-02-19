@@ -138,6 +138,33 @@ html {
   cursor: pointer;
 }
 
+.card__top .favourite__love {
+  background-image: linear-gradient(to right bottom, #fbdb89, #f48982);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  height: 3.5rem;
+  width: 3.5rem;
+  /* margin-left: auto; */
+  margin: 1rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__top .favourite__love:hover {
+  transform: scale(1.07);
+}
+.card__top .favourite__love:focus {
+  outline: none;
+}
+.card__top .favourite__love svg {
+  height: 1.75rem;
+  width: 1.75rem;
+  fill: #fff;
+}
+
 .card__content {
   height: 60%;
   line-height: 1.5;

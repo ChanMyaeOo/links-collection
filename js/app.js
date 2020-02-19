@@ -85,6 +85,8 @@ let categoryData = [
   'Knowledge'
 ];
 
+let favouriteLinks = [];
+
 // Handle modal open and close
 addLink.addEventListener('click', e => {
   modalBg.classList.add('modal-bg-active');
@@ -106,7 +108,12 @@ addLinkForm.addEventListener('submit', e => {
       <div class="card" data-link="${id}">
         <div class="card__top">
           <span>Share</span>
-          <span>Fav</span>
+          <button class="favourite__love" id="fav-btn">
+            <svg>
+              <use href="../img/icons.svg#icon-heart-outlined"></use>
+            </svg>
+          </button>
+          
         </div>
 
         <div class="card__content">
@@ -257,6 +264,25 @@ const injectCategory = list => {
 
 injectCategory(categoryData);
 
+// To change favourite icon style
+const isFavourite = id => {
+  const favData = favouriteLinks.findIndex(data => {
+    return data.id === id;
+  });
+  if (favData !== -1) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const setFav = cardId => {
+  let iconString = isFavourite(cardId) ? 'icon-heart' : 'icon-heart-outlined';
+  document
+    .querySelector('.favourite__love use')
+    .setAttribute('href', `../img/icons.svg#${iconString}`);
+};
+
 // Rendering links data card
 const renderLinkDataCard = list => {
   list.forEach(data => {
@@ -264,7 +290,11 @@ const renderLinkDataCard = list => {
       <div class="card" data-link="${data.id}">
         <div class="card__top">
           <span>Share</span>
-          <span>Fav</span>
+          <button class="favourite__love" id="fav-btn">
+            <svg>
+              <use href="../img/icons.svg#icon-heart-outlined"></use>
+            </svg>
+          </button>
         </div>
 
         <div class="card__content">
@@ -372,6 +402,41 @@ const renderLinkDataCard = list => {
           modalBgEdit.classList.remove('modal-bg-edit-active');
         });
     });
+
+    // Handle for adding link data to the favourite
+    document.querySelector('#fav-btn').addEventListener('click', e => {
+      const cardId = e.target.parentNode.parentNode.dataset.link;
+      const linkData = linksData.find(data => {
+        return data.id === cardId;
+      });
+
+      favouriteLinks.push({
+        id: linkData.id,
+        title: linkData.title,
+        description: linkData.description
+      });
+
+      // document
+      //   .querySelector('.favourite__love use')
+      //   .setAttribute('href', '../img/icons.svg#icon-heart');
+
+      // setFav(cardId);
+
+      // setFav(cardId);
+      // console.log(favouriteLinks);
+      // console.log(cardId);
+      // console.log();
+      Array.from(e.target.children).forEach(el => {
+        console.log(el.children);
+        // el.children.setAttribute('href', '../img/icons.svg#icon-heart');
+        Array.from(el.children).forEach(element => {
+          console.log(element);
+          element.setAttribute('href', '../img/icons.svg#icon-heart');
+        });
+      });
+    });
+
+    setFav(data.id);
   });
 };
 
