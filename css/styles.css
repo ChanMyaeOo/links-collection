@@ -44,6 +44,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 /* Nav section */
@@ -447,6 +448,47 @@ html {
 }
 
 .modal-bg-edit-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Favourite links section */
+.favourite-links {
+  position: absolute;
+  top: 10vh;
+  right: 0;
+  width: auto;
+  height: auto;
+  background: blueviolet;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s;
+}
+.favourite {
+  padding: 1rem;
+  border: 1px solid #f2f2f2;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.fav-title {
+  font-size: 2rem;
+  color: #f2f2f2;
+  background: blue;
+  text-decoration: none;
+}
+
+.fav-title:hover {
+  background: #f2f2f2;
+  color: blue;
+}
+
+.fav-description {
+  font-size: 1.6rem;
+  color: #f2f2f2;
+}
+
+.favourite-active {
   visibility: visible;
   opacity: 1;
 }

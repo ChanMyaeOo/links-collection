@@ -19,6 +19,8 @@ const filterBtnWrap = document.querySelector('.filter__btnWrap');
 const linkCategoryDropdown = document.querySelector('#category');
 const searchEl = document.querySelector('#search');
 const modalBgEdit = document.querySelector('.modal-bg-edit');
+const favToggle = document.querySelector('#fav-toggle');
+const favLinks = document.querySelector('.favourite-links');
 
 let linksData = [
   {
@@ -275,7 +277,7 @@ const isFavourite = id => {
     return false;
   }
 };
-
+// Change favourite SVG style
 const setFav = cardId => {
   let iconString = isFavourite(cardId) ? 'icon-heart' : 'icon-heart-outlined';
   document
@@ -404,36 +406,53 @@ const renderLinkDataCard = list => {
     });
 
     // Handle for adding link data to the favourite
+    let styleFavIcon = false;
     document.querySelector('#fav-btn').addEventListener('click', e => {
+      styleFavIcon = styleFavIcon ? false : true;
+      console.log(styleFavIcon);
+      // Favourite icon style
+      const setFavStyle = isFav => {
+        // To add favourite svg active for the target card element
+        Array.from(e.target.children).forEach(el => {
+          console.log(el.children);
+          // el.children.setAttribute('href', '../img/icons.svg#icon-heart');
+          Array.from(el.children).forEach(element => {
+            // console.log(element);
+
+            let iconString = isFav ? 'icon-heart' : 'icon-heart-outlined';
+            element.setAttribute('href', `../img/icons.svg#${iconString}`);
+          });
+        });
+      };
+
       const cardId = e.target.parentNode.parentNode.dataset.link;
       const linkData = linksData.find(data => {
         return data.id === cardId;
       });
 
-      favouriteLinks.push({
-        id: linkData.id,
-        title: linkData.title,
-        description: linkData.description
-      });
-
-      // document
-      //   .querySelector('.favourite__love use')
-      //   .setAttribute('href', '../img/icons.svg#icon-heart');
-
-      // setFav(cardId);
-
-      // setFav(cardId);
-      // console.log(favouriteLinks);
-      // console.log(cardId);
-      // console.log();
-      Array.from(e.target.children).forEach(el => {
-        console.log(el.children);
-        // el.children.setAttribute('href', '../img/icons.svg#icon-heart');
-        Array.from(el.children).forEach(element => {
-          console.log(element);
-          element.setAttribute('href', '../img/icons.svg#icon-heart');
+      if (styleFavIcon) {
+        favouriteLinks.push({
+          id: linkData.id,
+          title: linkData.title,
+          description: linkData.description
         });
-      });
+        setFavStyle(styleFavIcon);
+        favLinks.innerHTML = '';
+        renderFavDataList(favouriteLinks);
+      } else {
+        setFavStyle(styleFavIcon);
+        removeLinkFromFav(cardId);
+      }
+
+      // // To add favourite svg active for the target card element
+      // Array.from(e.target.children).forEach(el => {
+      //   console.log(el.children);
+      //   // el.children.setAttribute('href', '../img/icons.svg#icon-heart');
+      //   Array.from(el.children).forEach(element => {
+      //     // console.log(element);
+      //     element.setAttribute('href', '../img/icons.svg#icon-heart');
+      //   });
+      // });
     });
 
     setFav(data.id);
@@ -441,6 +460,32 @@ const renderLinkDataCard = list => {
 };
 
 renderLinkDataCard(linksData);
+
+// Render favourite link data list
+const renderFavDataList = favList => {
+  favList.forEach(list => {
+    const markup = `
+    <div class="favourite">
+      <a href="#" class="fav-title">${list.title}</a>
+      <div class="fav-description">${list.description}</div>
+    </div>
+    `;
+
+    favLinks.insertAdjacentHTML('afterbegin', markup);
+  });
+};
+
+renderFavDataList(favouriteLinks);
+
+// Remove data link from the favourite list
+const removeLinkFromFav = id => {
+  const dataIndex = favouriteLinks.findIndex(data => {
+    return data.id === id;
+  });
+  favouriteLinks.splice(dataIndex, 1);
+  favLinks.innerHTML = '';
+  renderFavDataList(favouriteLinks);
+};
 
 // Handle search data link
 searchEl.addEventListener('input', e => {
@@ -468,5 +513,7 @@ const deleteCard = id => {
   }
 };
 
-// Handle edit link data card
-const editCard = id => {};
+// Handle for favourite data link toggle
+favToggle.addEventListener('click', e => {
+  favLinks.classList.toggle('favourite-active');
+});
