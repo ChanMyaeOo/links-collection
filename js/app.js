@@ -362,13 +362,11 @@ const renderLinkDataCard = list => {
     let styleFavIcon = false;
     document.querySelector('#fav-btn').addEventListener('click', e => {
       styleFavIcon = styleFavIcon ? false : true;
-      console.log(styleFavIcon);
       // Favourite icon style
       const setFavStyle = isFav => {
         // To add favourite svg active for the target card element
         Array.from(e.target.children).forEach(el => {
-          console.log(el.children);
-          // el.children.setAttribute('href', '../img/icons.svg#icon-heart');
+          // console.log(el.children);
           Array.from(el.children).forEach(element => {
             // console.log(element);
 
@@ -396,16 +394,6 @@ const renderLinkDataCard = list => {
         setFavStyle(styleFavIcon);
         removeLinkFromFav(cardId);
       }
-
-      // // To add favourite svg active for the target card element
-      // Array.from(e.target.children).forEach(el => {
-      //   console.log(el.children);
-      //   // el.children.setAttribute('href', '../img/icons.svg#icon-heart');
-      //   Array.from(el.children).forEach(element => {
-      //     // console.log(element);
-      //     element.setAttribute('href', '../img/icons.svg#icon-heart');
-      //   });
-      // });
     });
 
     setFav(data.id);
