@@ -249,7 +249,18 @@ html {
   align-items: center;
 }
 
-.pagination__items > div {
+/* .pagination__items > div {
+  width: 4rem;
+  height: 4rem;
+  background: blueviolet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(196, 202, 211);
+  cursor: pointer;
+} */
+
+.pagination-btn {
   width: 4rem;
   height: 4rem;
   background: blueviolet;

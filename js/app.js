@@ -103,6 +103,7 @@ addLinkForm.addEventListener('submit', e => {
 
     cardWrap.innerHTML = '';
     renderLinkDataCard(linksData);
+    showPagination();
   }
 });
 
@@ -512,3 +513,48 @@ document.querySelector('#sortBy').addEventListener('change', e => {
   cardWrap.innerHTML = '';
   renderLinkDataCard(sortedLinksData);
 });
+
+// Handle for page pagination
+const pageRows = 9;
+let currentPage = 1;
+const paginationItems = document.querySelector('.pagination__items');
+
+const showPagination = () => {
+  if (linksData.length > 9) {
+    const displayCardList = (list, pageRows, page) => {
+      currentPage = page;
+      page--;
+      let start = pageRows * page;
+      let end = start + pageRows;
+      let cardList = list.slice(start, end);
+
+      cardWrap.innerHTML = '';
+      renderLinkDataCard(cardList);
+    };
+
+    const setPagination = (list, pageRows) => {
+      let paginationNum = Math.ceil(list.length / pageRows);
+      paginationItems.innerHTML = '';
+      for (let i = 1; i < paginationNum + 1; i++) {
+        const button = paginationBtn(i, list);
+        paginationItems.appendChild(button);
+      }
+    };
+
+    const paginationBtn = (paginationNumber, list) => {
+      const button = document.createElement('button');
+      button.textContent = paginationNumber;
+      button.classList.add('pagination-btn');
+
+      button.addEventListener('click', e => {
+        cardWrap.innerHTML = '';
+        displayCardList(list, pageRows, e.target.textContent);
+      });
+
+      return button;
+    };
+
+    displayCardList(linksData, pageRows, currentPage);
+    setPagination(linksData, pageRows);
+  }
+};
