@@ -348,13 +348,13 @@ html {
 
 .modal__form {
   background: #f2f2f2;
-  width: 30%;
-  height: 40%;
+  width: 35%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
   position: relative;
+  border-radius: 3px;
 }
 
 .modal-close {
@@ -362,10 +362,60 @@ html {
   top: 1rem;
   right: 1rem;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   cursor: pointer;
+  color: #666;
 }
 
+.modal-close:hover {
+  color: #000;
+}
+
+.form-title {
+  margin: 5rem 1rem 1rem 1rem;
+  width: 60%;
+  height: 3rem;
+  padding: 0.5rem;
+}
+
+.form-description {
+  margin: 1rem;
+  width: 60%;
+  padding: 0.5rem;
+}
+
+.form-url {
+  margin: 1rem;
+  width: 60%;
+  padding: 0.5rem;
+}
+
+.form-category {
+  margin: 1rem;
+  width: 60%;
+}
+
+.form-category > span {
+  font-size: 1.6rem;
+}
+
+.category {
+  height: 3rem;
+}
+
+.add-link-btn {
+  margin: 1rem 1rem 4rem 1rem;
+  padding: 0.6rem;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #666;
+}
+
+.add-link-btn:hover {
+  color: #000;
+}
 /* Modal section for adding category */
 
 .modal-cat-bg {
@@ -554,6 +604,10 @@ html {
   .container {
     max-width: 85%;
   }
+
+  .modal__form {
+    width: 40%;
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -585,6 +639,26 @@ html {
     grid-column: 1/4;
     justify-self: end;
   }
+
+  .modal__form {
+    width: 47%;
+  }
+
+  .form-title {
+    width: 75%;
+  }
+
+  .form-description {
+    width: 75%;
+  }
+
+  .form-url {
+    width: 75%;
+  }
+
+  .form-category {
+    width: 75%;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -615,6 +689,32 @@ html {
   .filter__btnWrap {
     width: 95%;
     padding: 1rem;
+  }
+
+  .modal__form {
+    width: 60%;
+  }
+
+  .form-title {
+    width: 80%;
+  }
+
+  .form-description {
+    width: 80%;
+  }
+
+  .form-url {
+    width: 80%;
+  }
+
+  .form-category {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .modal__form {
+    width: 75%;
   }
 }
 

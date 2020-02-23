@@ -294,20 +294,44 @@
     <!-- Modal section for adding link data -->
     <div class="modal-bg">
       <form class="modal__form">
-        <label for="title">Title: </label>
-        <input type="text" name="title" id="title" />
-        <label for="description">Description: </label>
-        <input type="text" name="description" id="description" />
-        <label for="link">Link: </label>
-        <textarea name="link" id="link"></textarea>
-        <select name="category" id="category">
-          <!-- <option value="design">Design</option>
-          <option value="programming">Programming</option>
-          <option value="fashion">Fashion</option> -->
-        </select>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          class="form-title"
+          placeholder="Enter Title"
+        />
 
-        <button type="submit" class="add-link-btn">Add New Link</button>
-        <span class="modal-close">X</span>
+        <textarea
+          name="description"
+          id="description"
+          cols="20"
+          rows="4"
+          placeholder="Enter Description"
+          class="form-description"
+        ></textarea>
+
+        <textarea
+          name="link"
+          id="link"
+          class="form-url"
+          placeholder="Enter Url"
+          cols="20"
+          rows="4"
+        ></textarea>
+
+        <label for="category" class="form-category"
+          ><span>Choose Category :</span>
+          <select name="category" id="category" class="category">
+            <!-- <option value="design">Design</option>
+            <option value="programming">Programming</option>
+            <option value="fashion">Fashion</option> -->
+          </select>
+        </label>
+
+        <button type="submit" class="add-link-btn">Add to list</button>
+
+        <i class="far fa-times-circle modal-close"></i>
       </form>
     </div>
 
