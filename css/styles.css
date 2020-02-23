@@ -156,6 +156,7 @@ html {
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 8rem;
+  min-height: 25vh;
 }
 
 .card {
@@ -615,4 +616,12 @@ html {
     width: 95%;
     padding: 1rem;
   }
+}
+
+/* Default text for card secton */
+.default-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
 }

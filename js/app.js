@@ -47,7 +47,10 @@ modalClose.addEventListener('click', e => {
 addLinkForm.addEventListener('submit', e => {
   e.preventDefault();
   let title = e.target.elements.title.value;
-  let description = e.target.elements.description.value;
+  let description =
+    e.target.elements.description.value !== ''
+      ? e.target.elements.description.value
+      : '---';
   let link = e.target.elements.link.value;
   let linkCategory = category.options[category.selectedIndex].value;
   const id = uuid();
@@ -69,7 +72,7 @@ addLinkForm.addEventListener('submit', e => {
           </div>
           <div class="card__description">
             <p>
-              ${description.length === 0 ? '---' : description}
+              ${description}
             </p>
           </div>
         </div>
@@ -546,3 +549,12 @@ const showPagination = () => {
     setPagination(linksData, pageRows);
   }
 };
+
+// Show default text for card section if there is no data in linksData
+
+if (linksData.length === 0) {
+  const paragraph = document.createElement('p');
+  paragraph.textContent = 'Add your favourite links to the list :)';
+  paragraph.classList.add('default-text');
+  cardWrap.appendChild(paragraph);
+}
