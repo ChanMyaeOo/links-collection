@@ -50,9 +50,6 @@ html {
 /* Nav section */
 
 .nav {
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 4rem 0 8rem 0;
@@ -87,22 +84,22 @@ html {
 /* Filter section */
 
 .filter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 5.5fr 1fr;
   margin-bottom: 8rem;
 }
 
 .filter__btnWrap {
-  height: auto;
-  background: blueviolet;
-  width: 60%;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  height: auto;
+  background: blueviolet;
+  width: 90%;
   border-radius: 0.5rem;
   flex-wrap: wrap;
   padding: 2rem;
+  justify-self: center;
 }
 
 .filter__btnWrap > button {
@@ -113,11 +110,42 @@ html {
   margin: 1rem;
 }
 
-.filter__plus,
+.filter__plus {
+  /* height: 4rem; */
+  text-align: center;
+  align-self: center;
+  min-width: 14rem;
+}
+
 .filter__minus {
-  font-size: 3.5rem;
-  color: blueviolet;
-  cursor: pointer;
+  /* height: 4rem; */
+  align-self: center;
+  text-align: center;
+  min-width: 15rem;
+}
+
+.filter__plus:link,
+.filter__minus:link,
+.filter__plus:visited,
+.filter__minus:visited {
+  text-decoration: none;
+  padding: 1rem;
+  background: blueviolet;
+  font-size: 1.6rem;
+  color: #f2f2f2;
+  border-radius: 3px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s;
+}
+
+.filter__plus:hover,
+.filter__minus:hover {
+  transform: translateY(-1rem);
+}
+
+.filter__plus:active,
+.filter__minus:active {
+  transform: translateY(0);
 }
 
 /* Card section */
@@ -506,6 +534,12 @@ html {
 
 /* Media query */
 
+@media only screen and (min-width: 1800px) {
+  .card {
+    width: 29%;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   html {
     /* this defines what 1rem is (in this case 1rem = 10px - with percentage 62.5) */
@@ -535,6 +569,21 @@ html {
   .container {
     max-width: 90%;
   }
+
+  .filter__plus {
+    grid-column: 1/4;
+    justify-self: start;
+  }
+
+  .filter__btnWrap {
+    grid-column: 1/4;
+    margin: 1.5rem;
+  }
+
+  .filter__minus {
+    grid-column: 1/4;
+    justify-self: end;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -560,5 +609,10 @@ html {
     order: -1;
     grid-column: 1/4;
     margin-bottom: 3rem;
+  }
+
+  .filter__btnWrap {
+    width: 95%;
+    padding: 1rem;
   }
 }
