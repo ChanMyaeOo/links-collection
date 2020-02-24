@@ -237,6 +237,32 @@ const setFav = cardId => {
     .setAttribute('href', `../img/icons.svg#${iconString}`);
 };
 
+// Render favourite link data list
+const renderFavDataList = favList => {
+  favList.forEach(list => {
+    const markup = `
+    <div class="favourite">
+      <a href="${list.link}" target="_blank" class="fav-title">${list.title}</a>
+      <div class="fav-description">${list.description}</div>
+    </div>
+    `;
+
+    favLinks.insertAdjacentHTML('afterbegin', markup);
+  });
+};
+
+renderFavDataList(favouriteLinks);
+
+// Remove data link from the favourite list
+const removeLinkFromFav = id => {
+  const dataIndex = favouriteLinks.findIndex(data => {
+    return data.id === id;
+  });
+  favouriteLinks.splice(dataIndex, 1);
+  favLinks.innerHTML = '';
+  renderFavDataList(favouriteLinks);
+};
+
 // Rendering links data card
 const renderLinkDataCard = list => {
   list.forEach(data => {
@@ -364,9 +390,21 @@ const renderLinkDataCard = list => {
             '#category-edit'
           ).value;
 
-          console.log(linkData.updatedAt);
+          // to interactive with updated link data and favourite list
+          favouriteLinks.forEach(favLink => {
+            console.log(favLink);
+            if (favLink.id === linkData.id) {
+              console.log('FAVVV');
+              (favLink.title = linkData.title),
+                (favLink.description = linkData.description),
+                (favLink.link = linkData.link),
+                (favLink.linkCategory = linkData.linkCategory);
+              favLinks.innerHTML = '';
+              renderFavDataList(favouriteLinks);
+            }
+          });
+
           linkData.updatedAt = moment().valueOf();
-          console.log(linkData.updatedAt);
 
           cardWrap.innerHTML = '';
           renderLinkDataCard(linksData);
@@ -419,32 +457,6 @@ const renderLinkDataCard = list => {
 };
 
 renderLinkDataCard(linksData);
-
-// Render favourite link data list
-const renderFavDataList = favList => {
-  favList.forEach(list => {
-    const markup = `
-    <div class="favourite">
-      <a href="${list.link}" target="_blank" class="fav-title">${list.title}</a>
-      <div class="fav-description">${list.description}</div>
-    </div>
-    `;
-
-    favLinks.insertAdjacentHTML('afterbegin', markup);
-  });
-};
-
-renderFavDataList(favouriteLinks);
-
-// Remove data link from the favourite list
-const removeLinkFromFav = id => {
-  const dataIndex = favouriteLinks.findIndex(data => {
-    return data.id === id;
-  });
-  favouriteLinks.splice(dataIndex, 1);
-  favLinks.innerHTML = '';
-  renderFavDataList(favouriteLinks);
-};
 
 // Handle search data link
 searchEl.addEventListener('input', e => {
