@@ -3,3 +3,8 @@
 2. Add event deligation for adding favourite list (favourite button and svg)
 
 3. Make to interactive with link card data and favourite links list (when the link card is updated)
+
+4. Added to local storage
+
+5. Make copy link if the share button was clicked
+
