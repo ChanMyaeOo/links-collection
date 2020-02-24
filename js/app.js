@@ -22,6 +22,17 @@ const modalBgEdit = document.querySelector('.modal-bg-edit');
 const favToggle = document.querySelector('#fav-toggle');
 const favLinks = document.querySelector('.favourite-links');
 
+// Get data from localStorage
+// const getFromStorage = () => {
+//   const links = localStorage.getItem('linksData');
+
+//   try {
+//     return links ? JSON.parse(links) : [];
+//   } catch (e) {
+//     return [];
+//   }
+// };
+
 let linksData = [];
 let categoryData = [
   'All',
@@ -33,6 +44,18 @@ let categoryData = [
 ];
 
 let favouriteLinks = [];
+
+// Check localStorage and assign values to linksData (if localStorage is not equal null)
+if (localStorage.getItem('linksData') !== null) {
+  console.log('NULL');
+  linksData = JSON.parse(localStorage.getItem('linksData'));
+  console.log(linksData);
+}
+
+// Save data to localStorage
+const saveToStorage = (dataKey, data) => {
+  localStorage.setItem(`${dataKey}`, JSON.stringify(data));
+};
 
 // Handle modal open and close
 addLink.addEventListener('click', e => {
@@ -88,7 +111,7 @@ addLinkForm.addEventListener('submit', e => {
   // Check inputs to push data into linksData
   const now = moment().valueOf();
   if (title.length > 0 && link.length > 0) {
-    linksData.push({
+    const newData = {
       id,
       title,
       description,
@@ -96,7 +119,9 @@ addLinkForm.addEventListener('submit', e => {
       linkCategory,
       createdAt: now,
       updatedAt: now
-    });
+    };
+    linksData.push(newData);
+    saveToStorage('linksData', linksData);
     e.target.elements.title.value = '';
     e.target.elements.description.value = '';
     e.target.elements.link.value = '';
@@ -394,7 +419,6 @@ const renderLinkDataCard = list => {
           favouriteLinks.forEach(favLink => {
             console.log(favLink);
             if (favLink.id === linkData.id) {
-              console.log('FAVVV');
               (favLink.title = linkData.title),
                 (favLink.description = linkData.description),
                 (favLink.link = linkData.link),
@@ -407,6 +431,8 @@ const renderLinkDataCard = list => {
           linkData.updatedAt = moment().valueOf();
 
           cardWrap.innerHTML = '';
+          // save to localStorage
+          saveToStorage('linksData', linksData);
           renderLinkDataCard(linksData);
 
           modalBgEdit.classList.remove('modal-bg-edit-active');
@@ -437,12 +463,14 @@ const renderLinkDataCard = list => {
       });
 
       if (styleFavIcon) {
-        favouriteLinks.push({
+        const favourite = {
           id: linkData.id,
           title: linkData.title,
           description: linkData.description,
           link: linkData.link
-        });
+        };
+        favouriteLinks.push(favourite);
+        saveToStorage('favLinks', favouriteLinks);
         setFavStyle(styleFavIcon);
         favLinks.innerHTML = '';
         renderFavDataList(favouriteLinks);
