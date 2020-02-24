@@ -341,11 +341,17 @@
     <!-- Modal section for adding category -->
     <div class="modal-cat-bg">
       <form class="modal-cat-form">
-        <h2>Add New Category</h2>
-        <label for="add-category">Category: </label>
-        <input type="text" name="addCategory" id="add-category" />
-        <button type="submit">Add Category</button>
-        <span class="modal-cat-close">X</span>
+        <h2 class="cat-add-header">Add New Category</h2>
+        <input
+          type="text"
+          name="addCategory"
+          id="add-category"
+          class="cat-add-input"
+          placeholder="Enter Category"
+        />
+        <button type="submit" class="cat-add-button">Add Category</button>
+
+        <i class="far fa-times-circle modal-cat-close"></i>
       </form>
     </div>
 

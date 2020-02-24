@@ -438,24 +438,54 @@ html {
   opacity: 1;
 }
 
+.cat-add-header {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.cat-add-input {
+  margin: 2.5rem;
+  height: 3rem;
+  padding: 0.5rem;
+  width: 70%;
+}
+
+.cat-add-button {
+  padding: 0.5rem;
+  color: #666;
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cat-add-button:hover {
+  color: #000;
+}
+
 .modal-cat-form {
   background: #fdfbfb;
-  height: 30%;
+  height: 35%;
   width: 20%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   position: relative;
+  border-radius: 3px;
 }
 
 .modal-cat-close {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: bold;
   position: absolute;
   top: 1rem;
   right: 1rem;
   cursor: pointer;
+  color: #666;
+}
+
+.modal-cat-close:hover {
+  color: #000;
 }
 
 /* Modal section for removing category */
@@ -608,6 +638,14 @@ html {
   .modal__form {
     width: 40%;
   }
+
+  .cat-add-input {
+    width: 75%;
+  }
+
+  .modal-cat-form {
+    width: 40%;
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -658,6 +696,10 @@ html {
 
   .form-category {
     width: 75%;
+  }
+
+  .modal-cat-form {
+    width: 45%;
   }
 }
 
@@ -710,11 +752,23 @@ html {
   .form-category {
     width: 80%;
   }
+
+  .modal-cat-form {
+    width: 50%;
+  }
+
+  .cat-add-input {
+    width: 80%;
+  }
 }
 
 @media only screen and (max-width: 420px) {
   .modal__form {
     width: 75%;
+  }
+
+  .modal-cat-form {
+    width: 65%;
   }
 }
 
