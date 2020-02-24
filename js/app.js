@@ -290,20 +290,34 @@ const renderLinkDataCard = list => {
       modalBgEdit.classList.add('modal-bg-edit-active');
       const markup = `
           <form class="modal__edit-form">
-            <label for="title-edit">Title: </label>
-            <input type="text" name="title-edit" id="title-edit" />
-            <label for="description-edit">Description: </label>
-            <input type="text" name="description-edit" id="description-edit" />
-            <label for="link-edit">Link: </label>
-            <textarea name="link-edit" id="link-edit"></textarea>
-            <select name="category-edit" id="category-edit">
-              <!-- <option value="design">Design</option>
-              <option value="programming">Programming</option>
-              <option value="fashion">Fashion</option> -->
-            </select>
-
-            <button type="submit" class="add-link-btn-edit">Edit Link Data</button>
-            <span class="modal-close-edit">X</span>
+            
+            <input type="text" name="title-edit" id="title-edit" class="input-edit"
+            placeholder="Enter Title"/>
+         
+            <textarea
+              name="description-edit"
+              id="description-edit"
+              cols="20"
+              rows="4"
+              placeholder="Enter Description"
+              class="description-edit"
+            ></textarea>
+            <textarea name="link-edit" id="link-edit"
+              cols="20"
+              rows="4"
+              placeholder="Enter Url"
+              class="link-edit"
+            ></textarea>
+            <label for="category-edit" class="form-category-edit">
+            <span>Choose Category :</span>
+              <select name="category-edit" id="category-edit" class="category-edit">
+                <!-- <option value="design">Design</option>
+                <option value="programming">Programming</option>
+                <option value="fashion">Fashion</option> -->
+              </select>
+            </label>
+            <button type="submit" class="add-link-btn-edit">Update</button>
+            <i class="far fa-times-circle modal-close-edit"></i>
           </form>
       `;
       modalBgEdit.innerHTML = markup;
@@ -388,7 +402,8 @@ const renderLinkDataCard = list => {
         favouriteLinks.push({
           id: linkData.id,
           title: linkData.title,
-          description: linkData.description
+          description: linkData.description,
+          link: linkData.link
         });
         setFavStyle(styleFavIcon);
         favLinks.innerHTML = '';
@@ -410,7 +425,7 @@ const renderFavDataList = favList => {
   favList.forEach(list => {
     const markup = `
     <div class="favourite">
-      <a href="#" class="fav-title">${list.title}</a>
+      <a href="${list.link}" target="_blank" class="fav-title">${list.title}</a>
       <div class="fav-description">${list.description}</div>
     </div>
     `;

@@ -35,6 +35,24 @@ html {
 }
 
 .header__favourite {
+  /* background: #f2f2f2; */
+  /* width: 4rem; */
+  /* height: 4rem; */
+  font-size: 3rem;
+  /* background-image: linear-gradient(to right bottom, #fbdb89, #f48982); */
+  /* color: pink; */
+  color: #f2f2f2;
+
+  position: absolute;
+  top: calc(height - 90%);
+  right: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* .header__favourite {
   background: #f2f2f2;
   width: 4rem;
   height: 4rem;
@@ -45,7 +63,7 @@ html {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
+} */
 
 /* Nav section */
 
@@ -416,6 +434,7 @@ html {
 .add-link-btn:hover {
   color: #000;
 }
+
 /* Modal section for adding category */
 
 .modal-cat-bg {
@@ -568,13 +587,13 @@ html {
 
 .modal__edit-form {
   background: #f2f2f2;
-  width: 30%;
-  height: 40%;
+  width: 35%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
   position: relative;
+  border-radius: 3px;
 }
 
 .modal-close-edit {
@@ -604,6 +623,68 @@ html {
 .modal-bg-edit-active {
   visibility: visible;
   opacity: 1;
+}
+
+.input-edit {
+  margin: 5rem 1rem 1rem 1rem;
+  width: 60%;
+  height: 3rem;
+  padding: 0.5rem;
+}
+
+.description-edit {
+  margin: 1rem;
+  width: 60%;
+  padding: 0.5rem;
+}
+
+.link-edit {
+  margin: 1rem;
+  width: 60%;
+  padding: 0.5rem;
+}
+
+.form-category-edit {
+  margin: 1rem;
+  width: 60%;
+}
+
+.form-category-edit > span {
+  font-size: 1.6rem;
+}
+
+.category-edit {
+  height: 3rem;
+}
+
+.add-link-btn-edit {
+  margin: 1rem 1rem 4rem 1rem;
+  padding: 0.6rem;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #666;
+}
+
+.add-link-btn-edit:hover {
+  color: #000;
+}
+
+.modal-close-edit {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-weight: bold;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #666;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.modal-close-edit:hover {
+  color: #000;
 }
 
 /* Favourite links section */
@@ -673,6 +754,10 @@ html {
     width: 40%;
   }
 
+  .modal__edit-form {
+    width: 40%;
+  }
+
   .cat-add-input {
     width: 75%;
   }
@@ -724,7 +809,15 @@ html {
     width: 47%;
   }
 
+  .modal__edit-form {
+    width: 47%;
+  }
+
   .form-title {
+    width: 75%;
+  }
+
+  .input-edit {
     width: 75%;
   }
 
@@ -732,11 +825,23 @@ html {
     width: 75%;
   }
 
+  .description-edit {
+    width: 75%;
+  }
+
   .form-url {
     width: 75%;
   }
 
+  .link-edit {
+    width: 75%;
+  }
+
   .form-category {
+    width: 75%;
+  }
+
+  .form-category-edit {
     width: 75%;
   }
 
@@ -783,7 +888,15 @@ html {
     width: 60%;
   }
 
+  .modal__edit-form {
+    width: 60%;
+  }
+
   .form-title {
+    width: 80%;
+  }
+
+  .input-edit {
     width: 80%;
   }
 
@@ -791,11 +904,23 @@ html {
     width: 80%;
   }
 
+  .description-edit {
+    width: 80%;
+  }
+
   .form-url {
     width: 80%;
   }
 
+  .link-edit {
+    width: 80%;
+  }
+
   .form-category {
+    width: 80%;
+  }
+
+  .category-edit {
     width: 80%;
   }
 
@@ -818,6 +943,10 @@ html {
 
 @media only screen and (max-width: 420px) {
   .modal__form {
+    width: 75%;
+  }
+
+  .modal__edit-form {
     width: 75%;
   }
 
