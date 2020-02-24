@@ -349,7 +349,7 @@
           class="cat-add-input"
           placeholder="Enter Category"
         />
-        <button type="submit" class="cat-add-button">Add Category</button>
+        <button type="submit" class="cat-add-button">Add</button>
 
         <i class="far fa-times-circle modal-cat-close"></i>
       </form>
@@ -358,11 +358,18 @@
     <!-- Modal section for removing category -->
     <div class="modal-cat-remove-bg">
       <form class="modal-cat-remove-form">
-        <h2>Enter Category Name To Remove</h2>
-        <label for="remove-category">Category: </label>
-        <input type="text" name="removeCategory" id="remove-category" />
-        <button type="submit">Remove Category</button>
-        <span class="modal-cat-remove-close">X</span>
+        <h2 class="cat-remove-title">Remove Category</h2>
+
+        <input
+          type="text"
+          name="removeCategory"
+          id="remove-category"
+          class="cat-remove-input"
+          placeholder="Enter Category"
+        />
+        <button type="submit" class="cat-remove-btn">Remove</button>
+
+        <i class="far fa-times-circle modal-cat-remove-close"></i>
       </form>
     </div>
 

@@ -456,6 +456,8 @@ html {
   font-size: 1.6rem;
   font-weight: bold;
   cursor: pointer;
+  border-radius: 3px;
+  text-transform: uppercase;
 }
 
 .cat-add-button:hover {
@@ -464,7 +466,7 @@ html {
 
 .modal-cat-form {
   background: #fdfbfb;
-  height: 35%;
+  min-height: 30%;
   width: 20%;
   display: flex;
   justify-content: center;
@@ -512,24 +514,56 @@ html {
 
 .modal-cat-remove-form {
   background: #fdfbfb;
-  height: 30%;
+  min-height: 30%;
   width: 20%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   position: relative;
+  border-radius: 3px;
+}
+
+.cat-remove-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.cat-remove-input {
+  margin: 2.5rem;
+  height: 3rem;
+  padding: 0.5rem;
+  width: 70%;
+}
+
+.cat-remove-btn {
+  padding: 0.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.cat-remove-btn:hover {
+  color: #000;
 }
 
 .modal-cat-remove-close {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: bold;
   position: absolute;
   top: 1rem;
   right: 1rem;
   cursor: pointer;
+  color: #666;
 }
 
+.modal-cat-remove-close:hover {
+  color: #000;
+}
 /* Modal edit section */
 
 .modal__edit-form {
@@ -646,6 +680,14 @@ html {
   .modal-cat-form {
     width: 40%;
   }
+
+  .modal-cat-remove-form {
+    width: 40%;
+  }
+
+  .cat-remove-input {
+    width: 75%;
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -699,6 +741,10 @@ html {
   }
 
   .modal-cat-form {
+    width: 45%;
+  }
+
+  .modal-cat-remove-form {
     width: 45%;
   }
 }
@@ -760,6 +806,14 @@ html {
   .cat-add-input {
     width: 80%;
   }
+
+  .modal-cat-remove-form {
+    width: 50%;
+  }
+
+  .cat-remove-input {
+    width: 80%;
+  }
 }
 
 @media only screen and (max-width: 420px) {
@@ -768,6 +822,10 @@ html {
   }
 
   .modal-cat-form {
+    width: 65%;
+  }
+
+  .modal-cat-remove-form {
     width: 65%;
   }
 }
