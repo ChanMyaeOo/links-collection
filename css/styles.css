@@ -78,6 +78,21 @@ html {
 }
 
 .nav__sort--select {
+  background: blueviolet;
+  outline: none;
+  border: 1px solid #f2f2f2;
+  padding: 0.5rem;
+  border-radius: 3px;
+  color: #f2f2f2;
+  font-size: 1.6rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.nav__sort--select:focus {
+  border: 1px solid #fff;
+}
+
+.nav__sort--select {
   height: 4rem;
 }
 
@@ -97,6 +112,14 @@ html {
 .nav__search {
   height: 4rem;
   padding: 0.5rem;
+  outline: none;
+  border-radius: 2px;
+  font-size: 1.6rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.nav__search:focus {
+  border: 1px solid #666;
 }
 
 /* Filter section */
