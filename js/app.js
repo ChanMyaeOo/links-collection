@@ -129,22 +129,24 @@ removeCategory.addEventListener('click', e => {
 modalAddCatForm.addEventListener('submit', e => {
   e.preventDefault();
   const category = e.target.elements.addCategory.value;
-  categoryData.push(category);
-  // to inject category data to the UI (dropdown list)
-  linkCategoryDropdown.innerHTML = '';
-  injectCategory(categoryData);
+  if (category !== '') {
+    categoryData.push(category);
+    // to inject category data to the UI (dropdown list)
+    linkCategoryDropdown.innerHTML = '';
+    injectCategory(categoryData);
 
-  const markUp = `
-    <button class="categoryBtn">${category}</button>
-  `;
-  filterBtnWrap.insertAdjacentHTML('afterbegin', markUp);
+    const markUp = `
+      <button class="categoryBtn">${category}</button>
+    `;
+    filterBtnWrap.insertAdjacentHTML('afterbegin', markUp);
 
-  // Rerendering new category button to add categoryBtn class
-  filterBtnWrap.innerHTML = '';
-  renderCategoryData(categoryData);
+    // Rerendering new category button to add categoryBtn class
+    filterBtnWrap.innerHTML = '';
+    renderCategoryData(categoryData);
 
-  e.target.elements.addCategory.value = '';
-  modalCatBg.classList.remove('modal-cat-bg-active');
+    e.target.elements.addCategory.value = '';
+    modalCatBg.classList.remove('modal-cat-bg-active');
+  }
 });
 
 modalRemoveCatForm.addEventListener('submit', e => {
@@ -154,18 +156,18 @@ modalRemoveCatForm.addEventListener('submit', e => {
     return data === categoryName;
   });
 
-  categoryData.splice(categoryIndex, 1);
+  if (categoryIndex !== -1) {
+    categoryData.splice(categoryIndex, 1);
 
-  // handle for removing category button (if there is exist in the linksData, it won't be removed)
-
-  // to inject category button to the UI
-  filterBtnWrap.innerHTML = '';
-  renderCategoryData(categoryData);
-  // to inject category data to the UI (dropdown list)
-  linkCategoryDropdown.innerHTML = '';
-  injectCategory(categoryData);
-  modalCatRemoveBg.classList.remove('modal-cat-remove-bg-active');
-  e.target.elements.removeCategory.value = '';
+    // to inject category button to the UI
+    filterBtnWrap.innerHTML = '';
+    renderCategoryData(categoryData);
+    // to inject category data to the UI (dropdown list)
+    linkCategoryDropdown.innerHTML = '';
+    injectCategory(categoryData);
+    modalCatRemoveBg.classList.remove('modal-cat-remove-bg-active');
+    e.target.elements.removeCategory.value = '';
+  }
 });
 
 // filtering link data by clicking category button
@@ -173,13 +175,11 @@ const filterLink = () => {
   const categoryBtns = document.querySelectorAll('.categoryBtn');
   categoryBtns.forEach(btn => {
     btn.addEventListener('click', e => {
-      console.log(e.target.textContent);
       const categoryName = e.target.textContent;
       const matchLinks = linksData.filter(data => {
         return data.linkCategory === categoryName;
       });
 
-      console.log('match links', matchLinks);
       // rerender link data card with filtered link data
       cardWrap.innerHTML = '';
       renderLinkDataCard(matchLinks);
