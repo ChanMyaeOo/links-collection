@@ -26,23 +26,20 @@ html {
   justify-content: center;
   align-items: center;
   position: relative;
+  position: fixed;
+  z-index: 5;
 }
 
 .header__title {
   font-size: 3rem;
   color: #f2f2f2;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .header__favourite {
-  /* background: #f2f2f2; */
-  /* width: 4rem; */
-  /* height: 4rem; */
   font-size: 3rem;
-  /* background-image: linear-gradient(to right bottom, #fbdb89, #f48982); */
-  /* color: pink; */
   color: #f2f2f2;
-
   position: absolute;
   top: calc(height - 90%);
   right: 5%;
@@ -51,19 +48,6 @@ html {
   align-items: center;
   cursor: pointer;
 }
-
-/* .header__favourite {
-  background: #f2f2f2;
-  width: 4rem;
-  height: 4rem;
-  position: absolute;
-  top: calc(height - 90%);
-  right: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-} */
 
 /* Nav section */
 
@@ -71,6 +55,7 @@ html {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 4rem 0 8rem 0;
+  padding-top: 15vh;
 }
 
 .nav__sort {
@@ -712,7 +697,8 @@ html {
 
 /* Favourite links section */
 .favourite-links {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   top: 10vh;
   right: 0;
   width: auto;
@@ -721,7 +707,9 @@ html {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s;
+  z-index: 5;
 }
+
 .favourite {
   padding: 1rem;
   border: 1px solid #f2f2f2;
