@@ -245,15 +245,21 @@ injectCategory(categoryData);
 
 // To change favourite icon style
 const isFavourite = id => {
-  const favData = favouriteLinks.findIndex(data => {
-    return data.id === id;
-  });
-  if (favData !== -1) {
-    return true;
-  } else {
-    return false;
+  const favourLinks = JSON.parse(localStorage.getItem('favLinks'));
+
+  if (favourLinks !== null) {
+    const favData = favourLinks.findIndex(data => {
+      return data.id === id;
+    });
+
+    if (favData !== -1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 };
+
 // Change favourite SVG style
 const setFav = cardId => {
   let iconString = isFavourite(cardId) ? 'icon-heart' : 'icon-heart-outlined';
@@ -264,6 +270,7 @@ const setFav = cardId => {
 
 // Render favourite link data list
 const renderFavDataList = favList => {
+  favLinks.innerHTML = '';
   favList.forEach(list => {
     const markup = `
     <div class="favourite">
@@ -271,12 +278,17 @@ const renderFavDataList = favList => {
       <div class="fav-description">${list.description}</div>
     </div>
     `;
-
+    // favLinks.innerHTML = '';
     favLinks.insertAdjacentHTML('afterbegin', markup);
   });
 };
 
-renderFavDataList(favouriteLinks);
+const storageFavLinks = JSON.parse(localStorage.getItem('favLinks'));
+if (storageFavLinks === null) {
+  renderFavDataList([]);
+} else {
+  renderFavDataList(storageFavLinks);
+}
 
 // Remove data link from the favourite list
 const removeLinkFromFav = id => {
@@ -284,8 +296,10 @@ const removeLinkFromFav = id => {
     return data.id === id;
   });
   favouriteLinks.splice(dataIndex, 1);
+  saveToStorage('favLinks', favouriteLinks); // Refresh localStorage after removing fav
   favLinks.innerHTML = '';
-  renderFavDataList(favouriteLinks);
+  // renderFavDataList(favouriteLinks);
+  renderFavDataList(JSON.parse(localStorage.getItem('favLinks')));
 };
 
 // Rendering links data card
@@ -416,17 +430,21 @@ const renderLinkDataCard = list => {
           ).value;
 
           // to interactive with updated link data and favourite list
-          favouriteLinks.forEach(favLink => {
+          const favLinks = JSON.parse(localStorage.getItem('favLinks'));
+          favLinks.forEach(favLink => {
             console.log(favLink);
             if (favLink.id === linkData.id) {
               (favLink.title = linkData.title),
                 (favLink.description = linkData.description),
                 (favLink.link = linkData.link),
                 (favLink.linkCategory = linkData.linkCategory);
+
+              saveToStorage('favLinks', favLinks);
               favLinks.innerHTML = '';
-              renderFavDataList(favouriteLinks);
+              renderFavDataList(favLinks);
             }
           });
+          // renderFavDataList(favLinks);
 
           linkData.updatedAt = moment().valueOf();
 
@@ -473,6 +491,7 @@ const renderLinkDataCard = list => {
         saveToStorage('favLinks', favouriteLinks);
         setFavStyle(styleFavIcon);
         favLinks.innerHTML = '';
+
         renderFavDataList(favouriteLinks);
       } else {
         setFavStyle(styleFavIcon);
@@ -504,7 +523,10 @@ const deleteCard = id => {
       return data.id === id;
     });
     linksData.splice(dataIndex, 1);
+    // Refresh localStorage after deleting data
+    saveToStorage();
     // Rerender data link card
+    saveToStorage('linksData', linksData);
     cardWrap.innerHTML = '';
     renderLinkDataCard(linksData);
   } else {
